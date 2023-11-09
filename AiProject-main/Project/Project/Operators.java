@@ -3,7 +3,7 @@ public class Operators {
     static  int initialProsperity;
     static  int initialFood;
     static  int initialMaterials ;
-    static  int initialEnergy ;
+    static  int initialEnergy ; 
 
     static int unitPriceFood ;
     static int unitPriceMaterials ;
