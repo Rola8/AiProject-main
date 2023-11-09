@@ -1,9 +1,9 @@
 public class Operators {
 
-    static int initialProsperity;
-    static int initialFood;
-    static int initialMaterials ;
-    static int initialEnergy ;
+    static  int initialProsperity;
+    static  int initialFood;
+    static  int initialMaterials ;
+    static  int initialEnergy ;
 
     static int unitPriceFood ;
     static int unitPriceMaterials ;
@@ -31,13 +31,49 @@ public class Operators {
     private static int build1Budget = 0;
     private static int build2Budget = 0;
 
+        // Getter for initialProsperity
+        public int getInitialProsperity() {
+            return initialProsperity;
+        }
+    
+        // Setter for initialProsperity
+        public void setInitialProsperity(int initialProsperity) {
+            this.initialProsperity = initialProsperity;
+        }
+            // Getter for initialFood
+    public int getInitialFood() {
+        return initialFood;
+    }
+
+    // Setter for initialFood
+    public void setInitialFood(int initialFood) {
+        this.initialFood = initialFood;
+    }
+        // Getter for initialMaterials
+        public int getInitialMaterials() {
+            return initialMaterials;
+        }
+    
+        // Setter for initialMaterials
+        public void setInitialMaterials(int initialMaterials) {
+            this.initialMaterials = initialMaterials;
+        }
+    
+        // Getter for initialEnergy
+        public int getInitialEnergy() {
+            return initialEnergy;
+        }
+    
+        // Setter for initialEnergy
+        public void setInitialEnergy(int initialEnergy) {
+            this.initialEnergy = initialEnergy;
+        }
 
     // fillin the initial values and fill the values with the givens
     public static void parse (String initialState){
         String[] parts = initialState.split(";");
         if (parts.length == 8) {
-            initialProsperity = Integer.parseInt(parts[0]);
-
+            initialProsperity=Integer.parseInt(parts[0]);
             String[] initialFoodParts = parts[1].split(",");
             initialFood = Integer.parseInt(initialFoodParts[0]);
             initialMaterials = Integer.parseInt(initialFoodParts[1]);
@@ -96,7 +132,7 @@ public class Operators {
             if(startBudget>requestBudget && node.getState().getEnergy()>1 && node.getState().getFood()>1 && node.getState().getMaterials()>1 && node.getTimeofdelay()==0){
                 startBudget -= requestBudget;
                 node.setFoodDelay(true); 
-                node.setTimeofdelay(delayRequestFood+1);
+                node.setTimeofdelay(delayRequestFood);
                 node.getState().setEnergy(node.getState().getEnergy()-1);
                 node.getState().setFood(node.getState().getFood()-1);
                 node.getState().setMaterials(node.getState().getMaterials()-1);
@@ -117,7 +153,7 @@ public class Operators {
             if(startBudget>requestBudget && node.getState().getEnergy()>1 && node.getState().getFood()>1 && node.getState().getMaterials()>1 && node.getTimeofdelay()==0){
                 startBudget -= requestBudget;
                 node.setMaterialsDelay(true); 
-                node.setTimeofdelay(delayRequestMaterials+1);
+                node.setTimeofdelay(delayRequestMaterials);
                 node.getState().setEnergy(node.getState().getEnergy()-1);
                 node.getState().setFood(node.getState().getFood()-1);
                 node.getState().setMaterials(node.getState().getMaterials()-1);
@@ -137,7 +173,7 @@ public class Operators {
             if(startBudget>requestBudget && node.getState().getEnergy()>1 && node.getState().getFood()>1 && node.getState().getMaterials()>1 && node.getTimeofdelay()==0){
                 startBudget -= requestBudget;
                 node.setEnergyDelay(true); 
-                node.setTimeofdelay(delayRequestEnergy+1); 
+                node.setTimeofdelay(delayRequestEnergy); 
                 node.getState().setEnergy(node.getState().getEnergy()-1);
                 node.getState().setFood(node.getState().getFood()-1);
                 node.getState().setMaterials(node.getState().getMaterials()-1);
@@ -159,7 +195,7 @@ public class Operators {
                 node.getState().setFood(node.getState().getFood()-1);
                 node.getState().setMaterials(node.getState().getMaterials()-1);
                 if(node.getTimeofdelay()>0){
-                    node.setTimeofdelay(node.getTimeofdelay()-1);
+                   
                     if(node.getTimeofdelay()==0&& node.getFoodDelay()==true){
                         node.getState().setFood(node.getState().getFood()+amountRequestFood);
                         node.setFoodDelay(false);
@@ -194,7 +230,6 @@ public class Operators {
             node.getState().setMaterials(node.getState().getMaterials()-materialsUseBUILD1);
             node.getState().setProsperity(node.getState().getProsperity()+prosperityBUILD1);
             if(node.getTimeofdelay()>0){
-                node.setTimeofdelay(node.getTimeofdelay()-1);
                 if(node.getTimeofdelay()==0 && node.getFoodDelay()==true){
                     node.getState().setFood(node.getState().getFood()+amountRequestFood);
                     node.setFoodDelay(false);
@@ -220,7 +255,6 @@ public class Operators {
             node.getState().setMaterials(node.getState().getMaterials()-materialsUseBUILD2);
             node.getState().setProsperity(node.getState().getProsperity()+prosperityBUILD2);
             if(node.getTimeofdelay()>0){
-                node.setTimeofdelay(node.getTimeofdelay()-1);
                 if(node.getTimeofdelay()==0&& node.getFoodDelay()==true){
                     node.getState().setFood(node.getState().getFood()+amountRequestFood);
                     node.setFoodDelay(false);

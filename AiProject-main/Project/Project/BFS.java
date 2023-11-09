@@ -50,22 +50,28 @@ public class BFS {
                         if(currentNode.getinvalidAction()==0){
                             for (String operator : theNextOperations) {
                                 System.out.println(operator);
-                                Node nodeChild = new Node(currentNode.getState(), 
+                                State newState = new State();
+                                newState = currentNode.getState();
+                                Node nodeChild = new Node(newState, 
                                                 currentNode, operator,  
-                                                currentNode.getDepth(), 0,currentNode.getFoodDelay(),currentNode.getMaterialsDelay(),currentNode.getEnergyDelay(),currentNode.getTimeofdelay() );  
+                                                currentNode.getDepth(), 0,currentNode.getFoodDelay(),currentNode.getMaterialsDelay(),currentNode.getEnergyDelay(),currentNode.getTimeofdelay());  
                                 nodeChild.setDepth(nodeChild.getDepth()+1);            
                                 queueLevelNodes.add(nodeChild);
+                                newState =null;
                      }
                     }
                     } else{
                         if(currentNode.getinvalidAction()==0){
                             for (String operator : DelayOperations) {
-                                System.out.println(operator);
-                                Node nodeChild = new Node(currentNode.getState(), 
+                                System.out.println("Delay"+operator+currentNode.getTimeofdelay());
+                                State newState = new State();
+                                newState = currentNode.getState();
+                                Node nodeChild = new Node(newState, 
                                                 currentNode, operator,  
-                                                currentNode.getDepth(), 0,currentNode.getFoodDelay(),currentNode.getMaterialsDelay(),currentNode.getEnergyDelay(),currentNode.getTimeofdelay() );  
+                                                currentNode.getDepth(), 0,currentNode.getFoodDelay(),currentNode.getMaterialsDelay(),currentNode.getEnergyDelay(),currentNode.getTimeofdelay()-1 );  
                                 nodeChild.setDepth(nodeChild.getDepth()+1);            
-                                queueLevelNodes.add(nodeChild);                        
+                                queueLevelNodes.add(nodeChild);     
+                                newState =null;                   
                     }
                 }
         }
